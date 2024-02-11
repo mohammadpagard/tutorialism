@@ -14,5 +14,5 @@ urlpatterns = [
     path(
         '<int:course_id>/<str:course_slug>/video/list/',
         CourseVideoListView.as_view(), name='course_video_list'
-    ),
+    )
 ]
