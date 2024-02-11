@@ -1,0 +1,53 @@
+@font-face {
+  font-family: Bdana;
+  src: url("../fonts/Dana/Dana-Bold.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: Mdana;
+  src: url("../fonts/Dana/Dana-Medium.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: Rdana;
+  src: url("../fonts/Dana/Dana-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Bdana;
+}
+
+a,
+label,
+div#user-tools,
+div#user-tools form#logout-form button,
+div.breadcrumbs,
+button.button,
+summary,
+span.action-counter {
+  font-family: MDana;
+}
+
+p,
+input,
+div.help,
+textarea,
+td,
+th,
+select {
+  font-family: RDana !important;
+}
+
+div.help div {
+  color: #FF4149;
+}
