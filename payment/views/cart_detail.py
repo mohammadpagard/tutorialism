@@ -8,7 +8,6 @@ class CartView(View):
     def get(self, request):
         cart = Cart(request)
         cart_length = len([item for item in cart])    # length of cart values
-        print([i for i in cart])
         context = {
             'cart': cart,
             'cart_length': cart_length
