@@ -16,13 +16,21 @@ class OrderDetailView(LoginRequiredMixin, View):
 class OrderCreateView(LoginRequiredMixin, View):
     def get(self, request):
         cart = Cart(request)
-        order = Order.objects.create(user=request.user, total_price=cart.total_price())
+        order = Order.objects.create(
+            user=request.user,
+            total_price=cart.total_price()
+        )
         for item in cart:
-            OrderItem.objects.create(
-                order=order,
-                course=item['course'],
-                price=item['price'],
-                quantity=item['quantity']
+            OrderItem.objects.bulk_create(
+                [
+                    OrderItem(
+                        order=order,
+                        course=item['course'],
+                        price=item['price'],
+                        quantity=item['quantity']
+                    )
+                ],
+                ignore_conflicts=True,
             )
         cart.clear()
         return redirect('payment:order_detail', order.id)

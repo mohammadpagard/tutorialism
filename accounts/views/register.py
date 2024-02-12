@@ -25,11 +25,16 @@ class UserRegisterView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            User.objects.create_user(
-                username=cd['username'],
-                phone=cd['phone'],
-                email=cd['email'],
-                password=cd['password']
+            User.objects.bulk_create(
+                [
+                    User(
+                        username=cd['username'],
+                    phone=cd['phone'],
+                    email=cd['email'],
+                    password=cd['password']
+                    )
+                ],
+                ignore_conflicts=True,
             )
             messages.success(request, _('ثبت نام شما با موفقیت انجام شد'), 'success')
             return redirect('home:home')
