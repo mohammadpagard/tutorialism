@@ -34,7 +34,7 @@ class CourseListView(View):
 class CourseDetailView(View):
     def get(self, request, course_id=None, course_slug=None):
         course_slug = unquote(course_slug)
-        course = Course.objects.prefetch_related('videos').get(id=course_id, slug=unquote(course_slug))
+        course = Course.objects.prefetch_related('videos').filter(id=course_id, slug=unquote(course_slug)).first()
         introducing_video = course.videos.first()
         videos = CourseVideo.objects.filter(courses=course)[1:]
 
@@ -58,7 +58,7 @@ class CourseVideoListView(View):
 
 class CourseVideoView(LoginRequiredMixin, View):
     def get(self, request, video_id=None, video_slug=None):
-        video = CourseVideo.objects.prefetch_related('courses').get(id=video_id, slug=video_slug)
+        video = CourseVideo.objects.prefetch_related('courses').filter(id=video_id, slug=video_slug).first()
         # video = get_object_or_404(CourseVideo, id=video_id, slug=video_slug)
         course_paid = video.courses.filter(sold_to=request.user).iterator()
 
