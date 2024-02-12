@@ -17,18 +17,8 @@ DEBUG = config('DEBUG', cast=bool)
 ALLOWED_HOSTS = []
 
 
-# Application definition
-
-INSTALLED_APPS = [
-    # local apps
-    'accounts.apps.AccountsConfig',
-    'home.apps.HomeConfig',
-    'course.apps.CourseConfig',
-    'category.apps.CategoryConfig',
-    'teacher.apps.TeacherConfig',
-    'video.apps.VideoConfig',
-    'payment.apps.PaymentConfig',
-    # default apps
+## APP SETTINGS
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -36,11 +26,22 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    # third party apps
+]
+EXTERNAL_APPS = [
     'phonenumber_field',
     'ckeditor',
     'ckeditor_uploader',
 ]
+LOCAL_APPS = [
+    'accounts.apps.AccountsConfig',
+    'home.apps.HomeConfig',
+    'course.apps.CourseConfig',
+    'category.apps.CategoryConfig',
+    'teacher.apps.TeacherConfig',
+    'video.apps.VideoConfig',
+    'payment.apps.PaymentConfig',
+]
+INSTALLED_APPS = DJANGO_APPS + EXTERNAL_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
