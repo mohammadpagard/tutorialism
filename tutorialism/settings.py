@@ -40,6 +40,7 @@ LOCAL_APPS = [
     'teacher.apps.TeacherConfig',
     'video.apps.VideoConfig',
     'payment.apps.PaymentConfig',
+    'common.apps.CommonConfig',
 ]
 INSTALLED_APPS = DJANGO_APPS + EXTERNAL_APPS + LOCAL_APPS
 
