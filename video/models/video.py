@@ -4,9 +4,10 @@ from django.utils.translation import gettext_lazy as _
 from ckeditor_uploader.fields import RichTextUploadingField
 
 from teacher.models import Teacher
+from common.models import BaseModel
 
 
-class Video(models.Model):
+class Video(BaseModel):
     title = models.CharField(
         max_length=100,
         verbose_name=_("عنوان")
@@ -24,18 +25,6 @@ class Video(models.Model):
         on_delete=models.CASCADE,
         related_name='%(class)svideos',
         verbose_name=_("آموزگار")
-    )
-    created_at = models.DateTimeField(
-        auto_now_add=True,
-        null=True,
-        blank=True,
-        verbose_name=_("تاریخ ساخت")
-    )
-    updated_at = models.DateTimeField(
-        auto_now=True,
-        null=True,
-        blank=True,
-        verbose_name=_("تاریخ آخرین بروزرسانی")
     )
 
     class Meta:

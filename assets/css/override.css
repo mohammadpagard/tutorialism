@@ -1,18 +1,18 @@
 @font-face {
   font-family: Bdana;
-  src: url("../fonts/Dana/Dana-Bold.ttf");
-  font-weight: normal;
+  src: url("../fonts/Dana-Regular.ttf");
+  font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: Mdana;
-  src: url("../fonts/Dana/Dana-Medium.ttf");
-  font-weight: normal;
+  src: url("../fonts/Dana-Regular.ttf");
+  font-weight: 700;
   font-style: normal;
 }
 @font-face {
   font-family: Rdana;
-  src: url("../fonts/Dana/Dana-Regular.ttf");
+  src: url("../fonts/Dana-Regular.ttf");
   font-weight: normal;
   font-style: normal;
 }

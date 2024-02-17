@@ -1,8 +1,9 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from common.models import BaseModel
 
 
-class Category(models.Model):
+class Category(BaseModel):
     title = models.CharField(
         max_length=70,
         verbose_name=_("عنوان")
@@ -22,18 +23,6 @@ class Category(models.Model):
         null=True,
         blank=True,
         allow_unicode=True
-    ) 
-    created_at = models.DateTimeField(
-        auto_now_add=True,
-        null=True,
-        blank=True,
-        verbose_name=_("تاریخ ساخت")
-    )
-    updated_at = models.DateTimeField(
-        auto_now=True,
-        null=True,
-        blank=True,
-        verbose_name=_("تاریخ آخرین بروزرسانی")
     )
 
     class Meta:

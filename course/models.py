@@ -7,9 +7,10 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from category.models import CourseCategory
 from teacher.models import Teacher
 from accounts.models import User
+from common.models import BaseModel
 
 
-class Course(models.Model):
+class Course(BaseModel):
     title = models.CharField(
         max_length=50,
         verbose_name=_("عنوان دوره")
@@ -60,18 +61,6 @@ class Course(models.Model):
     sale_count = models.PositiveIntegerField(
         default=0,
         verbose_name=_("تعداد فروش")
-    )
-    created_at = models.DateTimeField(
-        auto_now_add=True,
-        null=True,
-        blank=True,
-        verbose_name=_("تاریخ ساخت")
-    )
-    updated_at = models.DateTimeField(
-        auto_now=True,
-        null=True,
-        blank=True,
-        verbose_name=_("تاریخ آخرین بروزرسانی")
     )
 
     class Meta:

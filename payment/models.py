@@ -3,9 +3,10 @@ from django.utils.translation import gettext_lazy as _
 
 from course.models import Course
 from accounts.models import User
+from common.models import BaseModel
 
 
-class Order(models.Model):
+class Order(BaseModel):
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -19,18 +20,6 @@ class Order(models.Model):
     is_paid = models.BooleanField(
         default=False,
         verbose_name=_("وضعیت پرداخت")
-    )
-    created_at = models.DateTimeField(
-        auto_now_add=True,
-        null=True,
-        blank=True,
-        verbose_name=_("تاریخ ساخت")
-    )
-    updated_at = models.DateTimeField(
-        auto_now=True,
-        null=True,
-        blank=True,
-        verbose_name=_("تاریخ آخرین بروزرسانی")
     )
 
     class Meta:
