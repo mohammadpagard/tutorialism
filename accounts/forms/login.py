@@ -12,8 +12,8 @@ class UserLoginForm(forms.Form):
                 'class': 'field'
             })
 
-    phone = PhoneNumberField(
+    login_phone = PhoneNumberField(
         region='IR',
         label=_("شماره همراه")
     )
-    password = forms.CharField(label=_("رمز عبور"), widget=forms.PasswordInput())
+    login_password = forms.CharField(label=_("رمز عبور"), widget=forms.PasswordInput())

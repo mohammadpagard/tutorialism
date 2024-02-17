@@ -20,12 +20,12 @@ class UserLoginView(View):
         form = self.form_class
         context = {'form': form}
         return render(request, self.template_name, context)
-    
+
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            user = authenticate(username=cd['phone'], password=cd['password'])
+            user = authenticate(username=cd['login_phone'], password=cd['login_password'])
             if user is not None:
                 login(request, user)
                 messages.success(request, 'با موفقیت وارد حساب کاربری خود شدید', 'success')
