@@ -3,12 +3,12 @@ from django.views import View
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 
-from accounts.forms import RegisterForm
+from accounts.forms import UserRegisterForm
 from accounts.models import User
 
 
 class UserRegisterView(View):
-    form_class = RegisterForm
+    form_class = UserRegisterForm
     template_name = 'accounts/register.html'
 
     def dispatch(self, request, *args, **kwargs):
@@ -28,10 +28,10 @@ class UserRegisterView(View):
             User.objects.bulk_create(
                 [
                     User(
-                        username=cd['username'].lower().strip(),
-                        phone=cd['phone'],
-                        email=cd['email'].lower().strip(),
-                        password=cd['password']
+                        username=cd['register_username'].lower().strip(),
+                        phone=cd['register_phone'],
+                        email=cd['register_email'].lower().strip(),
+                        password=cd['register_password']
                     )
                 ],
                 ignore_conflicts=True,

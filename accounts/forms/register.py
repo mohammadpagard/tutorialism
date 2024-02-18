@@ -8,20 +8,21 @@ from phonenumber_field.formfields import PhoneNumberField
 from accounts.models import User
 
 
-class RegisterForm(forms.ModelForm):
-    phone = PhoneNumberField(region='IR', label=_("شماره همراه"))
-    password = forms.CharField(
+class UserRegisterForm(forms.Form):
+    register_username = forms.CharField(required=True, label=_("نام کاربری"), widget=forms.TextInput())
+    register_phone = PhoneNumberField(region='IR', label=_("شماره همراه"))
+    register_password = forms.CharField(
         required=True,
         label=_("رمز عبور"),
         widget=forms.PasswordInput(),
         validators=[validate_password]
     )
-    password2 = forms.CharField(
+    register_password2 = forms.CharField(
         required=True,
         label=_("تکرار رمز عبور"),
         widget=forms.PasswordInput()
     )
-    email = forms.EmailField(label=_("ایمیل"), required=False)
+    register_email = forms.EmailField(label=_("ایمیل"), required=False)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -30,26 +31,22 @@ class RegisterForm(forms.ModelForm):
                 'class': 'field'
             })
 
-    class Meta:
-        model = User
-        fields = ('username', 'phone', 'email', 'password', 'password2')
-
     def clean_username(self):
-        username = self.cleaned_data['username']
-        user = User.objects.filter(username=username)
+        uname = self.cleaned_data['register_username']
+        user = User.objects.filter(username=uname)
         if user:
             raise ValidationError(_("این نام کاربری از قبل وجود دارد"))
-        return username
+        return uname
 
     def clean_email(self):
-        email = self.cleaned_data['email']
+        email = self.cleaned_data['register_email']
         user = User.objects.filter(email=email)
         if user:
             raise ValidationError(_("این ایمیل از قبل وجود دارد"))
         return email
 
     def clean_phone(self):
-        phone = self.cleaned_data['phone']
+        phone = self.cleaned_data['register_phone']
         user = User.objects.filter(phone=phone)
         if user:
             raise ValidationError(_("این شماره همراه از قبل وجود دارد"))
@@ -57,7 +54,7 @@ class RegisterForm(forms.ModelForm):
 
     def clean(self):
         cd = super().clean()
-        p1 = cd.get('password1')
-        p2 = cd.get('password2')
+        p1 = cd.get('register_password1')
+        p2 = cd.get('register_password2')
         if p1 and p2 and p2 != p1:
             raise ValidationError(_("رمز های عبور باید باهم برابر باشند"))

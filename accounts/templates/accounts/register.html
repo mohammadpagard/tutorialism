@@ -17,23 +17,23 @@
         <hr>
         <form method="POST">
             {% csrf_token %}
-            <p class="text-danger">{{ form.errors.username }}</p>
-            <span class="label">{{ form.username.label }}</span><br>{{ form.username }}
+            <p class="text-danger">{{ form.errors.register_username }}</p>
+            <span class="label">{{ form.register_username.label }}</span><br>{{ form.register_username }}
             <br>
 
-            <p class="text-danger">{{ form.errors.phone }}</p>
-            <span class="label">{{ form.phone.label }}</span><br>{{ form.phone }}
+            <p class="text-danger">{{ form.errors.register_phone }}</p>
+            <span class="label">{{ form.register_phone.label }}</span><br>{{ form.register_phone }}
             <br>
 
-            <p class="text-danger">{{ form.errors.email }}</p>
-            <span class="label">{{ form.email.label }}</span><br>{{ form.email }}
+            <p class="text-danger">{{ form.errors.register_email }}</p>
+            <span class="label">{{ form.register_email.label }}</span><br>{{ form.register_email }}
             <br>
 
-            <p class="text-danger">{{ form.errors.password }}</p>
-            <span class="label">{{ form.password.label }}</span><br>{{ form.password }}
+            <p class="text-danger">{{ form.errors.register_password }}</p>
+            <span class="label">{{ form.register_password.label }}</span><br>{{ form.register_password }}
             <br>
 
-            <span class="label">{{ form.password2.label }}</span><br>{{ form.password2 }}
+            <span class="label">{{ form.register_password2.label }}</span><br>{{ form.register_password2 }}
             <br>
 
             <input type="submit" value="ثبت نام" class="btn">
