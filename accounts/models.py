@@ -49,6 +49,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self) -> str:
         return str(self.phone)
 
+    def save(self, *args, **kwargs):
+        self.email = self.email.lower().strip()
+        self.username = self.username.lower().strip()
+        result = super().save(*args, **kwargs)
+        return result
+
     @property
     def is_staff(self):
         return self.is_admin

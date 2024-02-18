@@ -28,10 +28,10 @@ class UserRegisterView(View):
             User.objects.bulk_create(
                 [
                     User(
-                        username=cd['username'],
-                    phone=cd['phone'],
-                    email=cd['email'],
-                    password=cd['password']
+                        username=cd['username'].lower().strip(),
+                        phone=cd['phone'],
+                        email=cd['email'].lower().strip(),
+                        password=cd['password']
                     )
                 ],
                 ignore_conflicts=True,
